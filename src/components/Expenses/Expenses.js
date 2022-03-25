@@ -10,7 +10,7 @@ const Expenses = (props) => {
                 title={props.items.title}
                 amount={props.items.amount} 
                 date={props.items.date}
-                location={props.items.location}
+                // location={props.items.location}
             />
         </Card>
     );
