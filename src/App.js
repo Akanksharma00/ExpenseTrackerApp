@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import ExpenseFilter from './components/Expenses/ExpenseFilter';
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from './components/Expenses/NewExpense';
@@ -36,22 +37,35 @@ const DUMMY_EXPENSES = [
 
 const App = () => {
   const [expenses,setExpenses] = useState(DUMMY_EXPENSES);
+  const [filteredYear, setFilteredYear] = useState('2020');
 
   const addExpenseHandler = (expense) => {
       console.log(expense);
       setExpenses((prevExpenses) => {
-        return [ ...prevExpenses, expense];
+        return [ expense, ...prevExpenses];
       });
       // setExpenses([expense, ...expenses]);
   };
   
+  const filterChangeHandler = (selectedYear) => {
+    // console.log(selectedYear);
+    setFilteredYear(selectedYear);
+  }
+
+  const filteredExpenses = expenses.filter(e => {
+    return e.date.getFullYear().toString() === filteredYear;
+  })
+
   return (
     <div>
-      {console.log(expenses)}
-      <NewExpense onAddExpense = {addExpenseHandler}/>
-      {expenses.map(e => {
+      {/* {console.log(expenses)} */}
+      
+      <NewExpense selectedValue={filteredYear} onAddExpense = {addExpenseHandler}/>
+      
+      <ExpenseFilter onFilterChangeHandler={filterChangeHandler}/>
+      {filteredExpenses.map(e => {
         return(
-          <Expenses items={e} />
+          <Expenses items={e}/>
         )
       })}
     </div>
