@@ -20,10 +20,10 @@ const ExpenseDetails = (props) => {
 
     return(
         <div className="expense-item__description">
-            <h2>{title}</h2>
+            <h2>{props.title}</h2>
             <p>{props.location}</p>
             <div className="expense-item__price">
-                {amount}
+                {props.amount}
             </div>
             <button onClick={clickHandler}>Change Title</button>
             {/* <button onClick={deleteClickHandler}>Delete</button> */}
