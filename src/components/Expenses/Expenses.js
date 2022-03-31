@@ -4,9 +4,10 @@ import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 
 const Expenses = (props) => {
+    console.log("Expenses "+props);
     return (
-        <Card className='expenses'>
-            key ={props.items.id}
+        <Card className='expenses' keyName ={props.items.id}>
+            
             <ExpenseItem 
                 // key={props.items.id}
                 title={props.items.title}

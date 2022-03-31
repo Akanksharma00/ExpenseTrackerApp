@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import ExpenseFilter from './components/Expenses/ExpenseFilter';
-
-import Expenses from "./components/Expenses/Expenses";
+import ExpensesChart from './components/Expenses/ExpensesChart';
+import ExpensesList from './components/Expenses/ExpensesList';
 import NewExpense from './components/Expenses/NewExpense';
 
 const DUMMY_EXPENSES = [
@@ -56,6 +56,8 @@ const App = () => {
     return e.date.getFullYear().toString() === filteredYear;
   })
 
+  
+
   return (
     <div>
       {/* {console.log(expenses)} */}
@@ -63,11 +65,16 @@ const App = () => {
       <NewExpense selectedValue={filteredYear} onAddExpense = {addExpenseHandler}/>
       
       <ExpenseFilter onFilterChangeHandler={filterChangeHandler}/>
-      {filteredExpenses.map(e => {
-        return(
-          <Expenses items={e}/>
-        )
-      })}
+      {/* {filteredExpenses.length === 0 ? (
+        <p>No expenses found</p>
+      ) : (
+        filteredExpenses.map(e => {
+          return(
+            <Expenses items={e}/>
+          )
+      }))} */}
+      <ExpensesChart expenses={filteredExpenses}/>
+      <ExpensesList items={filteredExpenses}/>      
     </div>
   );
 }
